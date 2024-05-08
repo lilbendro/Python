@@ -1,0 +1,26 @@
+from flask import Flask, render_template, render_template_string
+
+
+#Creamos instancia de FLASK
+
+app = Flask(__name__, template_folder="Templates")
+
+#Rutas de la apilcación FLASK
+
+#Ruta: http://dominio.com/ruta
+@app.route("/") #Ruta HTML en la que se ejecuta la función
+def index():
+    return f'<h1 style="color: blue;">Hola Mundo !!!</h1>'
+
+#Ruta: http://dominio.com/saludo/<nombre>
+@app.route("/saludo/<nombre>")
+def saludo(nombre):
+    return f'<h1 style="color: blue;">Hola {nombre} !!!</h1>'
+
+#Ruta: http://dominio.com/template
+@app.route("/template/<nombre>")
+def template(nombre):
+    return render_template("demotemplate.html", nombreenlaplantilla=nombre) 
+
+#Ejecutar la aplicación de FLASK en el servidor web integrado
+app.run()
